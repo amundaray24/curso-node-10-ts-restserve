@@ -1,0 +1,26 @@
+{
+  "name": "10-node-ts-restserver",
+  "version": "1.0.0",
+  "description": "<h1 style=\"color:#075982;font-weight:bold\"> Nodejs TypeScrip Rest Server </h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/node_curso/10-node-ts-restserver.git"
+  },
+  "author": "ANGERSON JOSE AMUNDARAY RENGIFO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/node_curso/10-node-ts-restserver/issues"
+  },
+  "homepage": "https://gitlab.com/node_curso/10-node-ts-restserver#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.13.0",
+    "typescript": "^4.9.5"
+  }
+}
