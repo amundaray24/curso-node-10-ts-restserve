@@ -1,8 +1,5 @@
-import dotenv from "dotenv";
-import Server from "./server";
-
-//Dotenv Configurations
-dotenv.config();
+import 'dotenv/config';
+import Server from './server';
 
 //Init Server
 const server = new Server();
