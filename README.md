@@ -5,3 +5,32 @@
 - Type: TypeScript / Nodejs
 ```
 #
+
+Important:
+```
+
+must create .env file example:
+
+TZ=<TIME-ZONE>
+ENV=<DEV|QA|PRD>
+PORT=<PORT>
+LOG_PATH=<LOG_PATH>
+
+```
+
+Init Command:
+
+```
+dev:
+npm run dev
+
+lint:
+npm run lint
+
+build:
+npm run lint
+
+prd:
+npm start
+
+```
