@@ -6,6 +6,7 @@ import PathModel from './entities/server/path.entity';
 import checkRateLimiter from './middleware/rate.limiter.middleware';
 import { defaultError404, defaultError500 } from './middleware/default.errors.handler.middleware';
 import loggerHelper from './helpers/logger.helper';
+import database from './configurations/rest.server.database.config';
 
 class Server {
 
@@ -20,6 +21,7 @@ class Server {
 
     this.paths = []
 
+    this.database();
     //Middleware's
     this.middleware();
     //Routes
@@ -46,7 +48,15 @@ class Server {
     this.app.use(defaultError500);
   }
 
-
+  async database() {
+    try {
+      await database.authenticate();
+      loggerHelper.info('Database Connection OK');
+    } catch (e) {
+      loggerHelper.error(e);
+      throw new Error('Database Connection Error');
+    }
+  }
 
   listen() {
     this.app.listen(this.port, () => {

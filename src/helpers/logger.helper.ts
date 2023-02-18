@@ -3,8 +3,8 @@ import  'winston-daily-rotate-file';
 
 const _generateLogLevel = (level?: string) => {
   switch (level) {
-    case 'DEV':   return 'debug';
-    case 'QA':  return 'info';
+    case 'DEV': return 'debug';
+    case 'QA': return 'info';
     case 'PRD':
     default : return 'error'
   }
