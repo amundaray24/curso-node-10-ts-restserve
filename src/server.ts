@@ -50,7 +50,7 @@ class Server {
 
   listen() {
     this.app.listen(this.port, () => {
-      loggerHelper.error(`Listening at http://0.0.0.0:${this.port}`);
+      loggerHelper.info(`Listening at http://0.0.0.0:${this.port}`);
     })
   }
 }
