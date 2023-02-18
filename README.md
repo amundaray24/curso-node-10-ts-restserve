@@ -28,7 +28,7 @@ lint:
 npm run lint
 
 build:
-npm run lint
+npm run build
 
 prd:
 npm start
