@@ -11,6 +11,13 @@ export const createUser = async (request: Request, response: Response) => {
   const {body} = request;
 
   try {
+
+    const emailValidation = await UserModel.count({where: {email : body.email}});
+
+    if (emailValidation > 0) {
+      return generateResponseError(response,400,'EMAIL ALREADY EXIST');
+    }
+
     const user = new UserModel(body);
     await user.save();
     response.status(201).send({data: mapUserResponse(user)});
@@ -55,7 +62,17 @@ export const modifyUser = async (request: Request, response: Response) => {
   const { body } = request;
 
   const user = await UserModel.findByPk(userId);
+
   if (user) {
+
+    if (body.email) {
+      const emailValidation = await UserModel.count({where: {email : body.email}});
+  
+      if (user.email !== body.email && emailValidation > 0) {
+        return generateResponseError(response,400,'EMAIL ALREADY EXIST');
+      }
+    } 
+
     user.update(body);
     return response.sendStatus(204);
   } else {
