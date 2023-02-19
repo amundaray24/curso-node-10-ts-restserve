@@ -4,9 +4,12 @@ import helmet from 'helmet';
 
 import PathModel from './entities/server/path.entity';
 import checkRateLimiter from './middleware/rate.limiter.middleware';
-import { defaultError404, defaultError500 } from './middleware/default.errors.handler.middleware';
 import loggerHelper from './helpers/logger.helper';
 import database from './configurations/rest.server.database.config';
+
+import userRoute from "./routes/users.routes";
+
+import { defaultError404, defaultError500 } from './middleware/default.errors.handler.middleware';
 
 class Server {
 
@@ -19,7 +22,14 @@ class Server {
     this.app.disable('x-powered-by');
     this.port = process.env.PORT || '3000';
 
-    this.paths = []
+    this.paths = [
+      {
+        path: '/users',
+        route: {
+          router: userRoute
+        }
+      }
+    ]
 
     this.database();
     //Middleware's
@@ -53,7 +63,7 @@ class Server {
       await database.authenticate();
       loggerHelper.info('Database Connection OK');
     } catch (e) {
-      loggerHelper.error(e);
+      loggerHelper.error('Database Connection Error - ',e);
       throw new Error('Database Connection Error');
     }
   }
